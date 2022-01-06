@@ -19,7 +19,7 @@ const Home = ({ type }) => {
             try {
                 const res = await axios.get(
                     `lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,
-                    { headers: { token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzE4YjkyNjFmY2I5Zjk4NWZjNTRhNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MDk1MDYzNywiZXhwIjoxNjQxMzgyNjM3fQ.6v4jDp9MKYOKHJ-jpFxVhTdBq6PJ_EqND_kh1LaVEys"}}
+                    { headers: { token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzE4YjkyNjFmY2I5Zjk4NWZjNTRhNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MTQ1MTUwOCwiZXhwIjoxNjQxODgzNTA4fQ.ajHNFqofFHuTtlbyALjBgEwmmFLy33YdA2uAUrhAr4Q"}}
                 );
                 console.log(res.data)
                 setLists(res.data);
@@ -33,7 +33,7 @@ const Home = ({ type }) => {
     return (
         <HomeContainer>
             <Navbar />
-            <Featured type={type} />
+            <Featured type={type} setGenre={setGenre} />
             {lists.map(list => <MoviesList key={list._id} list={list} />)}
         </HomeContainer>
     )

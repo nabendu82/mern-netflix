@@ -72,14 +72,14 @@ const CategoryContainer = styled.div`
     }
 `
 
-const Featured = ({ type }) => {
+const Featured = ({ type, setGenre }) => {
     const [content, setContent] = useState({});
 
     useEffect(() => {
         const getRandomContent = async () => {
             try {
             const res = await axios.get(`/movies/random?type=${type}`, {
-                headers: { token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzE4YjkyNjFmY2I5Zjk4NWZjNTRhNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MDk1MDYzNywiZXhwIjoxNjQxMzgyNjM3fQ.6v4jDp9MKYOKHJ-jpFxVhTdBq6PJ_EqND_kh1LaVEys"},
+                headers: { token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzE4YjkyNjFmY2I5Zjk4NWZjNTRhNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MTQ1MTUwOCwiZXhwIjoxNjQxODgzNTA4fQ.ajHNFqofFHuTtlbyALjBgEwmmFLy33YdA2uAUrhAr4Q"},
             });
             setContent(res.data[0]);
             } catch (err) {
@@ -94,21 +94,14 @@ const Featured = ({ type }) => {
             {type && (
                 <CategoryContainer>
                     <span>{type === "movie" ? "Movies" : "Series"}</span>
-                    <select name="genre" id="genre">
+                    <select name="genre" id="genre" onChange={e => setGenre(e.target.value)}>
                         <option>Genre</option>
-                        <option value="adventure">Adventure</option>
+                        <option value="action">Action</option>
                         <option value="comedy">Comedy</option>
                         <option value="crime">Crime</option>
-                        <option value="fantasy">Fantasy</option>
-                        <option value="historical">Historical</option>
+                        <option value="romantic">Romance</option>
                         <option value="horror">Horror</option>
-                        <option value="romance">Romance</option>
                         <option value="sci-fi">Sci-fi</option>
-                        <option value="thriller">Thriller</option>
-                        <option value="western">Western</option>
-                        <option value="animation">Animation</option>
-                        <option value="drama">Drama</option>
-                        <option value="documentary">Documentary</option>
                     </select>
                 </CategoryContainer>
             )}
